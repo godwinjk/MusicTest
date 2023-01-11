@@ -1,4 +1,4 @@
-package com.godwin.saltmusic.ui
+package com.godwin.testmusic.ui
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -13,8 +13,8 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
-import com.godwin.saltmusic.R
-import com.godwin.saltmusic.databinding.ActivityMainBinding
+import com.godwin.testmusic.R
+import com.godwin.testmusic.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
