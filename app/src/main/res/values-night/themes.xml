@@ -4,4 +4,20 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+    <style name="TextHeading" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_18</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextSubTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

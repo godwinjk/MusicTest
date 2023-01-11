@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.fragments.detail.DetailsFragment">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:liftOnScroll="true">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:navigationIcon="@drawable/ic_arrow_back" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/mcvImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_16"
+                app:cardCornerRadius="@dimen/card_corner_8"
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/sIvIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_16"
+                app:layout_constraintBottom_toBottomOf="@+id/tvContentType"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mcvImage"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/TextHeading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_8"
+                app:layout_constraintEnd_toStartOf="@+id/ivFav"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/sIvIcon"
+                app:layout_constraintTop_toBottomOf="@+id/mcvImage"
+                tools:text="Text" />
+
+            <TextView
+                android:id="@+id/tvContentType"
+                style="@style/TextSubTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_4"
+                app:layout_constraintEnd_toStartOf="@+id/ivFav"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/sIvIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                tools:text="Text" />
+
+            <TextView
+                android:id="@+id/tvArtist"
+                style="@style/TextHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                app:layout_constraintStart_toStartOf="@+id/sIvIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvContentType"
+                tools:text="Text" />
+
+            <TextView
+                android:id="@+id/tvCategory"
+                style="@style/TextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                android:textStyle="normal"
+                app:layout_constraintStart_toStartOf="@+id/sIvIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvArtist"
+                tools:text="Text" />
+
+            <TextView
+                android:id="@+id/tvRelease"
+                style="@style/TextSubTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8"
+                app:layout_constraintStart_toStartOf="@+id/sIvIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvCategory"
+                tools:text="Text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRelease" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivFav"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="@dimen/margin_16"
+                android:src="@drawable/avd_unfavorite"
+                android:tint="@color/red_fade"
+                app:layout_constraintBottom_toBottomOf="@+id/tvContentType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvTitle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

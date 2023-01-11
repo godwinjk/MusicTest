@@ -107,9 +107,9 @@ class ArtistFragment : Fragment(), OnItemClickListener<Song> {
     override fun onClick(t: Song?) {
         t?.let {
             mainViewModel.selectedLiveData.postValue(t)
-            val extras = FragmentNavigatorExtras(binding.rvSongs to "hero_image")
+//            val extras = FragmentNavigatorExtras(binding.rvSongs to "hero_image")
 
-            findNavController().navigate(R.id.actionArtistToDetails,null,null,extras)
+            findNavController().navigate(R.id.actionArtistToDetails)
         }
     }
 }

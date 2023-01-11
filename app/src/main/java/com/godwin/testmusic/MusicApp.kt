@@ -4,7 +4,7 @@ import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class SaltMusicApp : Application() {
+class MusicApp : Application() {
     override fun onCreate() {
         super.onCreate()
     }

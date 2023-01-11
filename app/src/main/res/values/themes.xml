@@ -6,4 +6,24 @@
     </style>
 
     <style name="Theme.TestMusic" parent="Base.Theme.TestMusic" />
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="TextHeading" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_18</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_dark_gray</item>
+    </style>
+    <style name="TextTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_dark_gray</item>
+    </style>
+    <style name="TextSubTitle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textColor">@color/text_dark_gray</item>
+    </style>
+
+    <dimen name="text_18">18sp</dimen>
 </resources>
