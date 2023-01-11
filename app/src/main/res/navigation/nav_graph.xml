@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/songFragment"
-        android:name="com.godwin.saltmusic.ui.fragments.songs.SongsFragment"
+        android:name="com.godwin.testmusic.ui.fragments.songs.SongsFragment"
         android:label="@string/songs"
         tools:layout="@layout/fragment_songs">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/albumFragment"
-        android:name="com.godwin.saltmusic.ui.fragments.album.AlbumFragment"
+        android:name="com.godwin.testmusic.ui.fragments.album.AlbumFragment"
         android:label="@string/albums"
         tools:layout="@layout/fragment_songs">
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/artistFragment"
-        android:name="com.godwin.saltmusic.ui.fragments.artist.ArtistFragment"
+        android:name="com.godwin.testmusic.ui.fragments.artist.ArtistFragment"
         android:label="@string/artists"
         tools:layout="@layout/fragment_songs">
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/playlistFragment"
-        android:name="com.godwin.saltmusic.ui.fragments.playlist.PlaylistFragment"
+        android:name="com.godwin.testmusic.ui.fragments.playlist.PlaylistFragment"
         android:label="@string/favourite"
         tools:layout="@layout/fragment_songs">
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.godwin.saltmusic.ui.fragments.detail.DetailsFragment"
+        android:name="com.godwin.testmusic.ui.fragments.detail.DetailsFragment"
         android:label="@string/playlists"
         tools:layout="@layout/fragment_details">
 
