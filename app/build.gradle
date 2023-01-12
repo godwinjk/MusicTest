@@ -18,7 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.godwin.testmusic.MainTestRunner"
     }
 
     buildTypes {
@@ -93,6 +93,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     implementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$navigation_version"
+
     androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation "androidx.arch.core:core-testing:2.1.0"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
