@@ -39,17 +39,24 @@ class MainActivityViewModelTest {
     @Before
     fun setup() {
         viewModelTest = MainActivityViewModel(networkConnectionManager, icloudApuManager)
-
+        viewModelTest.fetchSongs()
     }
 
     @Test
     fun checkFetchSongs() = runTest(mainDispatcherRule.dispatcher) {
-        viewModelTest.fetchSongs()
 
         val list= viewModelTest.songEntryLiveData.getOrAwaitValue()
         assert(list != null)
     }
 
+    @Test
+    fun checkSelectedSong() = runTest(mainDispatcherRule.dispatcher) {
+
+        val list= viewModelTest.songEntryLiveData.getOrAwaitValue()
+        viewModelTest.selectedLiveData.postValue(list[0])
+        val selectedSong =viewModelTest.selectedLiveData.getOrAwaitValue()
+        assert(selectedSong != null)
+    }
     @After
     fun tearDown() {
 
