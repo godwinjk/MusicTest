@@ -1,4 +1,4 @@
-## Salt Music
+## Test Music
 
 TestMusic  will list top 100 iTunes listed albums on basis of songs, album, artist also your favourite albums.
 
