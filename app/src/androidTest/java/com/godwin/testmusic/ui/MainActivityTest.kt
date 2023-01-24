@@ -1,5 +1,6 @@
 package com.godwin.testmusic.ui
 
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.IdlingResource
@@ -9,16 +10,30 @@ import androidx.test.espresso.idling.CountingIdlingResource
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.godwin.testmusic.MainTestRunner
 import com.godwin.testmusic.R
+import com.godwin.testmusic.di.AppModule
+import com.godwin.testmusic.di.NetworkModule
+import com.godwin.testmusic.util.getOrAwaitValue
+import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.RuleChain
+import org.junit.runner.RunWith
+import javax.inject.Inject
 
 @HiltAndroidTest
+@RunWith(AndroidJUnit4::class)
+//@UninstallModules(AppModule::class,NetworkModule::class)
+@ExperimentalCoroutinesApi
 internal class MainActivityTest {
 
     private val hiltRule = HiltAndroidRule(this)
@@ -31,34 +46,24 @@ internal class MainActivityTest {
         .outerRule(hiltRule)
         .around(activityTestRule)
 
+    @BindValue
+    lateinit var viewModel: MainActivityViewModel
+
     @Before
     fun setUp() {
-        IdlingRegistry.getInstance().register(idlingResource)
+        hiltRule.inject()
     }
 
     @Test
-    fun checkBottomNavDisplayed() {
-        idlingResource.increment()
-        idlingResource.decrement()
+    fun checkBottomNavDisplayed() = runTest {
         onView(withId(R.id.navigationView)).check(matches(isDisplayed()))
-        onView(withId(R.id.shimmerLayout)).check(matches(isDisplayed()))
-        onView(withId(R.id.incSearch)).check(matches(isDisplayed()))
 
     }
 
-//    @Test
-//    fun checkLoadingViewIsDisplayed() {
-//        onView(withId(R.id.shimmerLayout)).check(matches(isDisplayed()))
-//        idlingResource.increment()
-//        idlingResource.decrement()
-//    }
-//
-//    @Test
-//    fun checkSearching() {
-//        onView(withId(R.id.incSearch)).check(matches(isDisplayed()))
-//        idlingResource.increment()
-//        idlingResource.decrement()
-//    }
+    fun checkListLoaded() = runTest {
+        val list = viewModel.songEntryLiveData.getOrAwaitValue()
+        onView(withId(R.id.rvSongs)).check(matches(isDisplayed()))
+    }
 
     @After
     fun tearDown() {
