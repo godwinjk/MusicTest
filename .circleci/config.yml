@@ -44,14 +44,19 @@ jobs:
           path: app/build/outputs/apk/
           destination: apk
       - run:
-          name: Send email with report
+          name: Install gdrive
           command: |
-            echo "Sending email with build report"
-            echo "Attaching report from $CIRCLE_ARTIFACTS/app/build/reports"
-            echo "Build status: $CIRCLE_BUILD_STATUS"
-            echo "Sending email to $EMAIL_RECIPIENT"
-            echo "Subject: Build report for $CIRCLE_PROJECT_REPONAME"
-            cat $CIRCLE_ARTIFACTS/app/build/reports/debug.txt | mail -s "Build report for $CIRCLE_PROJECT_REPONAME" -a "From: CircleCI <noreply@circleci.com>" $EMAIL_RECIPIENT
+            wget https://github.com/gdrive-org/gdrive/releases/download/2.1.0/gdrive-linux-x64
+            chmod +x gdrive-linux-x64
+            sudo mv gdrive-linux-x64 /usr/local/bin/gdriveg.txt | mail -s "Build report for $CIRCLE_PROJECT_REPONAME" -a "From: CircleCI <noreply@circleci.com>" $EMAIL_RECIPIENT
+      - run:
+          name: Authorize gdrive
+          command: |
+            gdrive about
+#      - run:
+#          name: Upload APK to Google Drive
+#          command: |
+#            gdrive upload --parent apk/
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
