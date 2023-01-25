@@ -11,16 +11,22 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.LargeTest
+import com.godwin.testmusic.MainDispatcherRule
 import com.godwin.testmusic.MainTestRunner
 import com.godwin.testmusic.R
 import com.godwin.testmusic.di.AppModule
 import com.godwin.testmusic.di.NetworkModule
+import com.godwin.testmusic.network.ICloudApiManager
+import com.godwin.testmusic.util.NetworkConnectionManager
 import com.godwin.testmusic.util.getOrAwaitValue
 import dagger.hilt.android.testing.BindValue
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
@@ -31,13 +37,15 @@ import org.junit.runner.RunWith
 import javax.inject.Inject
 
 @HiltAndroidTest
-@RunWith(AndroidJUnit4::class)
+//@RunWith(MainTestRunner::class)
 //@UninstallModules(AppModule::class,NetworkModule::class)
 @ExperimentalCoroutinesApi
+@LargeTest
 internal class MainActivityTest {
 
     private val hiltRule = HiltAndroidRule(this)
     private val activityTestRule = ActivityScenarioRule(MainActivity::class.java)
+    private val mainDispatcherRule = MainDispatcherRule()
 
     private val idlingResource = CountingIdlingResource("Test")
 
@@ -45,13 +53,21 @@ internal class MainActivityTest {
     val rule: RuleChain = RuleChain
         .outerRule(hiltRule)
         .around(activityTestRule)
+        .around(mainDispatcherRule)
 
-    @BindValue
+    //    @Inject
     lateinit var viewModel: MainActivityViewModel
+
+    @Inject
+    lateinit var networkConnectionManager: NetworkConnectionManager
+
+    @Inject
+    lateinit var iCloudApiManager: ICloudApiManager
 
     @Before
     fun setUp() {
         hiltRule.inject()
+        viewModel = MainActivityViewModel(networkConnectionManager, iCloudApiManager)
     }
 
     @Test
@@ -60,9 +76,13 @@ internal class MainActivityTest {
 
     }
 
-    fun checkListLoaded() = runTest {
-        val list = viewModel.songEntryLiveData.getOrAwaitValue()
+    @Test
+    fun checkListLoaded() {
+//        val list = runBlocking(context = Dispatchers.Main) {
+//            viewModel.songEntryLiveData.getOrAwaitValue()
+//        }
         onView(withId(R.id.rvSongs)).check(matches(isDisplayed()))
+
     }
 
     @After

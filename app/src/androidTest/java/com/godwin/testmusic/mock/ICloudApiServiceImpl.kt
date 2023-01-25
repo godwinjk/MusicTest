@@ -3,8 +3,9 @@ package com.godwin.testmusic.mock
 import com.godwin.testmusic.network.ICloudApiService
 import com.godwin.testmusic.network.model.ITuneResponse
 import com.google.gson.Gson
+import javax.inject.Inject
 
-class ICloudApiServiceImpl : ICloudApiService {
+class ICloudApiServiceImpl @Inject constructor() : ICloudApiService {
     val json =
         "{\"feed\":{\"author\":{\"name\":{\"label\":\"iTunes Store\"}, \"uri\":{\"label\":\"http://www.apple.com/itunes/\"}}, \"entry\":[\n" +
                 "{\"im:name\":{\"label\":\"Bell Bottom Country\"}, \"im:image\":[\n" +
